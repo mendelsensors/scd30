@@ -31,6 +31,9 @@
 #include "Arduino.h"
 #include <Wire.h>
 
+
+bool mgos_scd_init(void);  //mongoose os init function
+
 //The default I2C address for the SCD30 is 0x61.
 #define SCD30_ADDRESS 0x61
 
