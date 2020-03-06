@@ -48,9 +48,9 @@
 class SCD30
 {
 public:
-	SCD30(void);
+	SCD30(uint8_t addr);
 
-	bool begin(TwoWire &wirePort = Wire); //By default use Wire port
+	bool begin(void); 
 
 	bool beginMeasuring(uint16_t pressureOffset);
 	bool beginMeasuring(void);
@@ -80,6 +80,8 @@ public:
 private:
 	//Variables
 	TwoWire *_i2cPort; //The generic connection to user's chosen I2C hardware
+
+    int8_t _addr;  //i2c address
 
 	//Global main datums
 	float co2 = 0;

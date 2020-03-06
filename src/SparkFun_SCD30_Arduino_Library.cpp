@@ -26,16 +26,24 @@
 */
 
 #include "SparkFun_SCD30_Arduino_Library.h"
+#include <Wire.h>
 
-SCD30::SCD30(void)
+SCD30::SCD30(uint8_t addr)
 {
   // Constructor
+  _addr = addr;
 }
 
 //Initialize the Serial port
-bool SCD30::begin(TwoWire &wirePort)
+bool SCD30::begin(void)
 {
-  _i2cPort = &wirePort; //Grab which port the user wants us to use
+    Wire.begin();  
+
+    // Initialise I2C
+    Wire.beginTransmission(_addr);
+
+//  _i2cPort = &wirePort; //Grab which port the user wants us to use
+	_i2cPort =  &Wire;
 
   /* Especially during obtaining the ACK BIT after a byte sent the SCD30 is using clock stretching  (but NOT only there)!
    * The need for clock stretching is described in the Sensirion_CO2_Sensors_SCD30_Interface_Description.pdf
