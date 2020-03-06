@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-bool scd_init(void);  //mongoose os init function
+bool scd30_init(void);  //mongoose os init function
 
 
 #ifdef __cplusplus
