@@ -27,6 +27,7 @@
 
 #include "SparkFun_SCD30_Arduino_Library.h"
 #include <Wire.h>
+#include "mgos.h"
 
 SCD30::SCD30(uint8_t addr)
 {
@@ -199,13 +200,15 @@ bool SCD30::dataAvailable()
 //Returns true if success
 bool SCD30::readMeasurement()
 {
-  printf("readMeasurement");
+  //printf("readMeasurement");
+  LOG(LL_INFO, ("readMeasurement"));
 
   //Verify we have data from the sensor
   if (dataAvailable() == false)
     return (false);
 
-  printf("data is available");
+//  printf("data is available");
+  LOG(LL_INFO, ("data is available"));
 
   uint32_t tempCO2 = 0;
   uint32_t tempHumidity = 0;
@@ -286,7 +289,7 @@ bool SCD30::readMeasurement()
   temperatureHasBeenReported = false;
 
   printf("co2: %f temp: %f humidity %f",co2,temperature,humidity);
-
+  LOG(LL_INFO, ("CO2 (ppm): %f", co2));
 
   return (true); //Success! New data available in globals.
 }
