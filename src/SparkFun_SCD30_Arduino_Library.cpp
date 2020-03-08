@@ -199,9 +199,13 @@ bool SCD30::dataAvailable()
 //Returns true if success
 bool SCD30::readMeasurement()
 {
+  printf("readMeasurement");
+
   //Verify we have data from the sensor
   if (dataAvailable() == false)
     return (false);
+
+  printf("data is available");
 
   uint32_t tempCO2 = 0;
   uint32_t tempHumidity = 0;
@@ -280,6 +284,9 @@ bool SCD30::readMeasurement()
   co2HasBeenReported = false;
   humidityHasBeenReported = false;
   temperatureHasBeenReported = false;
+
+  printf("co2: %f temp: %f humidity %f",co2,temperature,humidity);
+
 
   return (true); //Success! New data available in globals.
 }
